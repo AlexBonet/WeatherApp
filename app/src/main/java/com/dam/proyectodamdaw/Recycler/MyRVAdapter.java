@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.activities.MainActivity;
 
 import java.util.List;
 
@@ -27,17 +28,31 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
     @NonNull
     @Override
     public MyRVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = inflater.inflate(R.layout.simple_view,parent,false);
+        view.setOnClickListener(onClickListener);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyRVAdapter.ViewHolder holder, int position) {
+        WeatherOne w= list.get(position);
+        holder.dia.setText(w.getDia());
+        holder.fecha.setText(w.getFecha());
+        holder.hora.setText(w.getHora());
+        holder.gradosMin.setText(w.getGradosMin());
+        holder.gradosMax.setText(w.getGradosMax());
+        holder.gradosTemp.setText(w.getGradosTemp());
+        holder.descrip.setText(w.getDescripcion());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -56,16 +71,16 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
-            dia = itemView.findViewById(R.id.image);
-            fecha = itemView.findViewById(R.id.image);
-            hora = itemView.findViewById(R.id.image);
-            descrip = itemView.findViewById(R.id.image);
-            temperatura = itemView.findViewById(R.id.image);
-            gradosTemp = itemView.findViewById(R.id.image);
-            tempMax = itemView.findViewById(R.id.image);
-            gradosMax = itemView.findViewById(R.id.image);
-            tempMin = itemView.findViewById(R.id.image);
-            gradosMin = itemView.findViewById(R.id.image);
+            dia = itemView.findViewById(R.id.dia);
+            fecha = itemView.findViewById(R.id.fecha);
+            hora = itemView.findViewById(R.id.hora);
+            descrip = itemView.findViewById(R.id.descripcion);
+            temperatura = itemView.findViewById(R.id.temp);
+            gradosTemp = itemView.findViewById(R.id.gradosTemp);
+            tempMax = itemView.findViewById(R.id.max);
+            gradosMax = itemView.findViewById(R.id.gradosMax);
+            tempMin = itemView.findViewById(R.id.min);
+            gradosMin = itemView.findViewById(R.id.gradosMin);
         }
     }
 }

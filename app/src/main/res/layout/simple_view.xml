@@ -23,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="DIADIADIADIA"
+        android:textColor="#000000"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toTopOf="@+id/image" />
@@ -71,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="gMAX"
+        android:textColor="#F44336"
         app:layout_constraintBottom_toBottomOf="@+id/max"
         app:layout_constraintStart_toEndOf="@+id/max"
         app:layout_constraintTop_toTopOf="@+id/max" />
@@ -91,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="gMIn"
+        android:textColor="#00BCD4"
         app:layout_constraintBottom_toBottomOf="@+id/min"
         app:layout_constraintStart_toEndOf="@+id/min"
         app:layout_constraintTop_toTopOf="@+id/min" />
@@ -99,8 +103,9 @@
         android:id="@+id/fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="50dp"
         android:text="dd/mm/yyyy"
+        app:layout_constraintBottom_toBottomOf="@+id/dia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/dia" />
 
@@ -110,6 +115,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="90dp"
         android:text="hh:mm"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
