@@ -3,7 +3,7 @@ package com.dam.proyectodamdaw.Recycler;
 import com.dam.proyectodamdaw.base.ImageDownloader;
 
 public class WeatherOne {
-    private ImageDownloader imagen;
+    private int imagen;
     private String dia;
     private String hora;
     private String fecha;
@@ -12,7 +12,7 @@ public class WeatherOne {
     private String gradosMax;
     private String gradosMin;
 
-    public WeatherOne(ImageDownloader imagen, String dia, String hora, String fecha,
+    public WeatherOne(int imagen, String dia, String hora, String fecha,
                       String descripcion, String gradosTemp, String gradosMax,
                       String gradosMin) {
         this.imagen = imagen;
