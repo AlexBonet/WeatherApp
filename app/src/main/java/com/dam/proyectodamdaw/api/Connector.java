@@ -31,7 +31,7 @@ public class Connector{
     }
 
 
-    public <T> Object get(Class clazz, String path){
+    public <T> T get(Class<T> clazz, String path){
         String url = Parameters.URL + path;
         String jsonResponse = callMethodsObject.get(url);
         if(jsonResponse != null)
