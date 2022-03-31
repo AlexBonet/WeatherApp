@@ -27,6 +27,25 @@ public class Model {
                 "Domingo","20:00","10/03/2022","Soleado",
                 "25º","30º","15º"));
 
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º"));
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º"));
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º"));
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º"));
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º"));
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º"));
+
     }
 
     public static Model getInstance(){

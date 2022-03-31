@@ -39,7 +39,7 @@ public class Connector{
         return null;
     }
 
-    public <T> Object post(Class clazz, T data, String path){
+    public <T> T post(Class<T> clazz, T data, String path){
         String url = Parameters.URL + path;
         String jsonObject = conversor.toJson(data);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), jsonObject);
@@ -49,7 +49,7 @@ public class Connector{
         return null;
     }
 
-    public <T> Object put(Class clazz, T data, String path){
+    public <T> T put(Class<T> clazz, T data, String path){
         String url = Parameters.URL + path;
         String jsonObject = conversor.toJson(data);
         RequestBody body = RequestBody.create(MediaType.parse("application/json"), jsonObject);
@@ -59,7 +59,7 @@ public class Connector{
         return null;
     }
 
-    public <T> Object delete(Class clazz, String path){
+    public <T> T delete(Class<T> clazz, String path){
         String url = Parameters.URL + path;
         String jsonResponse = callMethodsObject.delete(url);
         if(jsonResponse != null)

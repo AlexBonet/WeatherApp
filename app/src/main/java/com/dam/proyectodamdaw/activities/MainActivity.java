@@ -1,5 +1,6 @@
 package com.dam.proyectodamdaw.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,12 +32,6 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
 //        ImageDownloader.DownloadImage(Parameters.URL_icon_pre+"03d"+Parameters.URL_icon_pos,imageView);
         recyclerView = findViewById(R.id.recycler);
 
-        MyRVAdapter myRecyclerViewAdapter = new MyRVAdapter(this, Model.getInstance().getList());
-        myRecyclerViewAdapter.setOnClickListener(this);
-        recyclerView.setAdapter(myRecyclerViewAdapter);
-
-        LinearLayoutManager myLinearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(myLinearLayoutManager);
     }
 
     @Override
@@ -54,11 +49,21 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
     @Override
     public void doInUI() {
         hideProgress();
+//TODO
+        MyRVAdapter myRecyclerViewAdapter = new MyRVAdapter(this, Model.getInstance().getList());
+        myRecyclerViewAdapter.setOnClickListener(this);
+        recyclerView.setAdapter(myRecyclerViewAdapter);
+
+        LinearLayoutManager myLinearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(myLinearLayoutManager);
     }
 
     @Override
     public void onClick(View view) {
         WeatherOne w= Model.getInstance().getList().get(recyclerView.getChildAdapterPosition(view));
-        Toast.makeText(this,"Prevision para el" + w.getDia() + " a las " + w.getHora(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Prevision para el " + w.getDia() + " a las " + w.getHora(),Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(),VistaExtendida.class);
+        startActivity(intent);
+
     }
 }
