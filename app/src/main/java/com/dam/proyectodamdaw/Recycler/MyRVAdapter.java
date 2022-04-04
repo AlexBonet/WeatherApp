@@ -13,17 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dam.proyectodamdaw.R;
 import com.dam.proyectodamdaw.activities.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
-    private List<WeatherOne> list;
+public class MyRVAdapter<T> extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
+    private List<T> list;
     private LayoutInflater inflater;
     private View.OnClickListener onClickListener;
 
-    public MyRVAdapter(Context context, List<WeatherOne> list){
+    public MyRVAdapter(Context context, List<T> list){
         this.list = list;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
+
 
     @NonNull
     @Override
@@ -35,7 +38,7 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MyRVAdapter.ViewHolder holder, int position) {
-        WeatherOne w= list.get(position);
+        WeatherOne w= (WeatherOne) list.get(position);
         holder.dia.setText(w.getDia());
         holder.fecha.setText(w.getFecha());
         holder.hora.setText(w.getHora());

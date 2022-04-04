@@ -20,8 +20,12 @@ import com.dam.proyectodamdaw.base.CallInterface;
 import com.dam.proyectodamdaw.R;
 import com.dam.proyectodamdaw.base.ImageDownloader;
 
+import java.net.ConnectException;
+import java.util.ArrayList;
+
 public class MainActivity extends BaseActivity implements CallInterface, View.OnClickListener {
     Root root;
+    String url = "forecast?lang=es&units=metric&lat=39.6217623&lon=-0.5955436&appid=610ef1ab429f1c7c4bb6021fdfa5b2c0";
     private RecyclerView recyclerView;
     private TextView nomCiudad;
 
@@ -47,14 +51,18 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
 
     @Override
     public void doInBackground() {
-        root = Connector.getConector().get(Root.class, "forecast?lang=es&units=metric&lat=39.6217623&lon=-0.5955436&appid=610ef1ab429f1c7c4bb6021fdfa5b2c0");
+        root = Connector.getConector().get(Root.class,url);
     }
 
     @Override
     public void doInUI() {
         hideProgress();
-//TODO
-        MyRVAdapter myRecyclerViewAdapter = new MyRVAdapter(this, Model.getInstance().getList());
+        Connector c = new Connector();
+
+// hem de llevar el Model
+//        MyRVAdapter myRecyclerViewAdapter = new MyRVAdapter(this, Model.getInstance().getList());
+
+        MyRVAdapter myRecyclerViewAdapter = new MyRVAdapter(this,c.getAsList(root.,url));
         myRecyclerViewAdapter.setOnClickListener(this);
         recyclerView.setAdapter(myRecyclerViewAdapter);
 
@@ -66,8 +74,8 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
     public void onClick(View view) {
         WeatherOne w= Model.getInstance().getList().get(recyclerView.getChildAdapterPosition(view));
         Toast.makeText(this,"Prevision para el " + w.getDia() + " a las " + w.getHora(),Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(),VistaExtendida.class);
 
+        Intent intent = new Intent(getApplicationContext(),VistaExtendida.class);
         intent.putExtra("hora",w.getHora());
         intent.putExtra("fecha",w.getFecha());
         intent.putExtra("grTemp",w.getGradosTemp());
