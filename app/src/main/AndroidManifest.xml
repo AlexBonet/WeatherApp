@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoDamDaw">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.ChooseCity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +20,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".activities.VistaExtendida"
             android:label="VistaExtendida"
             android:theme="@style/Theme.ProyectoDamDaw">
+        </activity>
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="EL TIEMPO EN:"
+            android:exported="true">
+
         </activity>
 
     </application>

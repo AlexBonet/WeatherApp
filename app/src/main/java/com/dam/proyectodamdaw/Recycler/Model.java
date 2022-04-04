@@ -17,34 +17,35 @@ public class Model {
 
     private Model(){
         list = new ArrayList<>();
-        list.add(new WeatherOne("1",
-                "Miercoles","20:00","30/03/2022","Soleado",
-                "25º","30º","15º"));
-        list.add(new WeatherOne("1",
-                "Marter","20:00","20/03/2022","Soleado",
-                "25º","30º","15º"));
-        list.add(new WeatherOne("2",
-                "Domingo","20:00","10/03/2022","Soleado",
-                "25º","30º","15º"));
 
         list.add(new WeatherOne("2",
                 "Domingo","20:00","10/03/2022","Soleado",
-                "25º","30º","15º"));
+                "25º","30º","15º","2","2"));
         list.add(new WeatherOne("2",
                 "Domingo","20:00","10/03/2022","Soleado",
-                "25º","30º","15º"));
+                "25º","30º","15º","2","2"));
         list.add(new WeatherOne("2",
                 "Domingo","20:00","10/03/2022","Soleado",
-                "25º","30º","15º"));
+                "25º","30º","15º","2","2"));
         list.add(new WeatherOne("2",
                 "Domingo","20:00","10/03/2022","Soleado",
-                "25º","30º","15º"));
+                "25º","30º","15º","2","2"));
         list.add(new WeatherOne("2",
                 "Domingo","20:00","10/03/2022","Soleado",
-                "25º","30º","15º"));
+                "25º","30º","15º","2","2"));
         list.add(new WeatherOne("2",
                 "Domingo","20:00","10/03/2022","Soleado",
-                "25º","30º","15º"));
+                "25º","30º","15º","2","2"));
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º","2","2"));
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º","2","2"));
+        list.add(new WeatherOne("2",
+                "Domingo","20:00","10/03/2022","Soleado",
+                "25º","30º","15º","2","2"));
+
 
     }
 

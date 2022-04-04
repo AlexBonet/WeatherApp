@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import com.dam.proyectodamdaw.base.ImageDownloader;
 public class MainActivity extends BaseActivity implements CallInterface, View.OnClickListener {
     Root root;
     private RecyclerView recyclerView;
+    private TextView nomCiudad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
 //        ImageView imageView=findViewById(R.id.ima);
 //        ImageDownloader.DownloadImage(Parameters.URL_icon_pre+"03d"+Parameters.URL_icon_pos,imageView);
         recyclerView = findViewById(R.id.recycler);
+        nomCiudad = findViewById(R.id.nomCiudad);
+        nomCiudad.setText(getIntent().getExtras().getString("city"));
 
     }
 
@@ -63,6 +67,15 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
         WeatherOne w= Model.getInstance().getList().get(recyclerView.getChildAdapterPosition(view));
         Toast.makeText(this,"Prevision para el " + w.getDia() + " a las " + w.getHora(),Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),VistaExtendida.class);
+
+        intent.putExtra("hora",w.getHora());
+        intent.putExtra("fecha",w.getFecha());
+        intent.putExtra("grTemp",w.getGradosTemp());
+        intent.putExtra("grMax",w.getGradosMax());
+        intent.putExtra("grMin",w.getGradosMin());
+        intent.putExtra("humedad",w.getHumedad());
+        intent.putExtra("grSens",w.getSensacionTermica());
+
         startActivity(intent);
 
     }

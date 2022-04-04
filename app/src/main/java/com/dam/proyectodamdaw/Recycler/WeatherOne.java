@@ -11,10 +11,10 @@ public class WeatherOne {
     private String gradosTemp;
     private String gradosMax;
     private String gradosMin;
+    private String humedad;
+    private String sensacionTermica;
 
-    public WeatherOne(String imagen, String dia, String hora, String fecha,
-                      String descripcion, String gradosTemp, String gradosMax,
-                      String gradosMin) {
+    public WeatherOne(String imagen, String dia, String hora, String fecha, String descripcion, String gradosTemp, String gradosMax, String gradosMin, String humedad, String sensacionTermica) {
         this.imagen = imagen;
         this.dia = dia;
         this.hora = hora;
@@ -23,6 +23,8 @@ public class WeatherOne {
         this.gradosTemp = gradosTemp;
         this.gradosMax = gradosMax;
         this.gradosMin = gradosMin;
+        this.humedad = humedad;
+        this.sensacionTermica = sensacionTermica;
     }
 
     public String getDia() {
@@ -51,5 +53,13 @@ public class WeatherOne {
 
     public String getGradosMin() {
         return gradosMin;
+    }
+
+    public String getHumedad() {
+        return humedad;
+    }
+
+    public String getSensacionTermica() {
+        return sensacionTermica;
     }
 }
