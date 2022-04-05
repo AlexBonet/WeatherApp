@@ -57,12 +57,8 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
     @Override
     public void doInUI() {
         hideProgress();
-        Connector c = new Connector();
 
-// hem de llevar el Model
-//        MyRVAdapter myRecyclerViewAdapter = new MyRVAdapter(this, Model.getInstance().getList());
-
-        MyRVAdapter myRecyclerViewAdapter = new MyRVAdapter(this,c.getAsList(root.,url));
+        MyRVAdapter myRecyclerViewAdapter = new MyRVAdapter(this,root);
         myRecyclerViewAdapter.setOnClickListener(this);
         recyclerView.setAdapter(myRecyclerViewAdapter);
 
