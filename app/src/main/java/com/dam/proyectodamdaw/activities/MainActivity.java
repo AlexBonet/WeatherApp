@@ -25,8 +25,7 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_main);
 
-//        ImageView imageView=findViewById(R.id.ima);
-//        ImageDownloader.DownloadImage(Parameters.URL_icon_pre+"03d"+Parameters.URL_icon_pos,imageView);
+
         nomCiudad = findViewById(R.id.nomCiudad);
         nomCiudad.setText(getIntent().getExtras().getString("city"));
         recyclerView = findViewById(R.id.recycler);

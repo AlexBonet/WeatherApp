@@ -10,12 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dam.proyectodamdaw.Parameters;
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.base.ImageDownloader;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MyRVAdapter<T> extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
+public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
     private Root root;
     private LayoutInflater inflater;
     private View.OnClickListener onClickListener;
@@ -38,17 +40,16 @@ public class MyRVAdapter<T> extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull MyRVAdapter.ViewHolder holder, int position) {
         Date date = new Date((long)root.list.get(position).dt*1000);
+//        String codImagen = root.list.get(position).weather.get(position).icon;
 
+//        ImageDownloader.DownloadImage(Parameters.URL_icon_pre + codImagen + Parameters.URL_icon_pos, holder.image);
         holder.dia.setText(new SimpleDateFormat("EEEE").format(date));
         holder.hora.setText(new SimpleDateFormat("HH:mm").format(date));
         holder.fecha.setText(new SimpleDateFormat("dd/MM/YYYY").format(date));
-//        holder.dia.setText( String.valueOf(root.list.get(position).dt_txt));
-//        holder.fecha.setText(String.valueOf(root.list.get(position).dt));
-//        holder.hora.setText(String.valueOf(root.list.get(position).weather.get(position).main));
         holder.gradosMin.setText(String.valueOf(root.list.get(position).main.temp_min));
         holder.gradosMax.setText(String.valueOf(root.list.get(position).main.temp_max));
         holder.gradosTemp.setText(String.valueOf(root.list.get(position).main.temp));
-        holder.descrip.setText(String.valueOf(root.list.get(position).weather.get(position).description));
+//        holder.descrip.setText(String.valueOf(root.list.get(position).weather.get(position).description));
 
     }
 
