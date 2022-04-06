@@ -4,11 +4,12 @@ import android.widget.ImageView;
 
 public class Ciudad {
     private String nom;
-    private long lat;
-    private long lon;
-    private ImageView imageView;
+    private String lat;
+    private String lon;
+    private int imageView;
+    private String url;
 
-    public Ciudad(String nom, long lat, long lon, ImageView imageView) {
+    public Ciudad(String nom, String lat, String lon, int imageView) {
         this.nom = nom;
         this.lat = lat;
         this.lon = lon;
@@ -19,18 +20,21 @@ public class Ciudad {
         return nom;
     }
 
-    public long getLat() {
+    public String getLat() {
         return lat;
     }
 
-    public long getLon() {
+    public String getLon() {
         return lon;
     }
 
-    public ImageView getImageView() {
+    public int getImage() {
         return imageView;
     }
 
+    public String getUrl() {
+        return url;
+    }
     @Override
     public String toString() {
         return  nom ;

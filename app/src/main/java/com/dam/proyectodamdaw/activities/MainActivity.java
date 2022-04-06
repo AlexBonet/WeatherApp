@@ -58,7 +58,6 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
     @Override
     public void onClick(View view) {
         int posi = recyclerView.getChildAdapterPosition(view);
-//        Toast.makeText(this,"Prevision para el " + "" + " a las " + "w.getHora()",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),VistaExtendida.class);
         intent.putExtra("root",root.list.get(posi));
         startActivity(intent);
