@@ -6,7 +6,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dam.proyectodamdaw.Parameters;
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.base.ImageDownloader;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class VistaExtendida extends AppCompatActivity {
     @Override
@@ -14,7 +19,7 @@ public class VistaExtendida extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.extended_view);
         List list = (List) getIntent().getExtras().getSerializable("root");
-        int posi = getIntent().getExtras().getInt("posicion");
+
 
         ImageView imageView = findViewById(R.id.imageExt);
         TextView hora = findViewById(R.id.horaExt);
@@ -25,10 +30,13 @@ public class VistaExtendida extends AppCompatActivity {
         TextView grSens = findViewById(R.id.grSensacionExt);
         TextView humedad = findViewById(R.id.numHumedad);
 
-//        imageView.setImageResource(getIntent().getExtras().getString("img"));
+        String codImagen = list.weather.get(0).icon;
+        ImageDownloader.DownloadImage(Parameters.URL_icon_pre + codImagen + Parameters.URL_icon_pos, imageView);
 
-        fecha.setText(String.valueOf(list.dt));
-//        hora.setText(String.valueOf(list.weather.get(posi).main));
+
+        Date date = new Date((long)list.dt*1000);
+        hora.setText(new SimpleDateFormat("HH:mm").format(date));
+        fecha.setText(new SimpleDateFormat("dd/MM/YYYY").format(date));
         grMin.setText(String.valueOf(list.main.temp_min));
         grMax.setText(String.valueOf(list.main.temp_max));
         grados.setText(String.valueOf(list.main.temp));

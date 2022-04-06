@@ -61,7 +61,6 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
 //        Toast.makeText(this,"Prevision para el " + "" + " a las " + "w.getHora()",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),VistaExtendida.class);
         intent.putExtra("root",root.list.get(posi));
-        intent.putExtra("posicion",posi);
         startActivity(intent);
 
     }

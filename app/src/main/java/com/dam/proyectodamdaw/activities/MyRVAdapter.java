@@ -40,16 +40,17 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull MyRVAdapter.ViewHolder holder, int position) {
         Date date = new Date((long)root.list.get(position).dt*1000);
-//        String codImagen = root.list.get(position).weather.get(position).icon;
 
-//        ImageDownloader.DownloadImage(Parameters.URL_icon_pre + codImagen + Parameters.URL_icon_pos, holder.image);
+        String codImagen = root.list.get(position).weather.get(0).icon;
+        ImageDownloader.DownloadImage(Parameters.URL_icon_pre + codImagen + Parameters.URL_icon_pos, holder.image);
+
         holder.dia.setText(new SimpleDateFormat("EEEE").format(date));
         holder.hora.setText(new SimpleDateFormat("HH:mm").format(date));
         holder.fecha.setText(new SimpleDateFormat("dd/MM/YYYY").format(date));
         holder.gradosMin.setText(String.valueOf(root.list.get(position).main.temp_min));
         holder.gradosMax.setText(String.valueOf(root.list.get(position).main.temp_max));
         holder.gradosTemp.setText(String.valueOf(root.list.get(position).main.temp));
-//        holder.descrip.setText(String.valueOf(root.list.get(position).weather.get(position).description));
+        holder.descrip.setText(String.valueOf(root.list.get(position).weather.get(0).description));
 
     }
 

@@ -29,7 +29,7 @@
         android:id="@+id/tempExt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="54dp"
         android:layout_marginTop="24dp"
         android:text="Temperatura"
         android:textSize="34sp"
