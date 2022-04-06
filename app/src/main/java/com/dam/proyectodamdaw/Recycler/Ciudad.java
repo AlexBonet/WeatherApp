@@ -2,13 +2,13 @@ package com.dam.proyectodamdaw.Recycler;
 
 import android.widget.ImageView;
 
-public class Ciudades {
+public class Ciudad {
     private String nom;
     private long lat;
     private long lon;
     private ImageView imageView;
 
-    public Ciudades(String nom, long lat, long lon, ImageView imageView) {
+    public Ciudad(String nom, long lat, long lon, ImageView imageView) {
         this.nom = nom;
         this.lat = lat;
         this.lon = lon;

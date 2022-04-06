@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.Recycler.Ciudad;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ChooseCity extends AppCompatActivity {
@@ -29,6 +30,8 @@ public class ChooseCity extends AppCompatActivity {
 
         spinner=findViewById(R.id.spinner);
         buttonIr=findViewById(R.id.ir);
+
+        Ciudad[] c= {};
 
         String[] citys = {"Lliria", "La Pobla", "Valencia"};
 

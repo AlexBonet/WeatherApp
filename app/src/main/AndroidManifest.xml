@@ -5,9 +5,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/solluvia_background"
         android:label="EL TIEMPO :)"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/solluvia_background"
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoDamDaw">

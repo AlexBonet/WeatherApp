@@ -11,18 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.proyectodamdaw.R;
-import com.dam.proyectodamdaw.activities.MainActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MyRVAdapter<T> extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
-    private List<T> list;
+    private Root root;
     private LayoutInflater inflater;
     private View.OnClickListener onClickListener;
 
-    public MyRVAdapter(Context context, List<T> list){
-        this.list = list;
+    public MyRVAdapter(Context context, Root list){
+        this.root = list;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -38,20 +34,20 @@ public class MyRVAdapter<T> extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull MyRVAdapter.ViewHolder holder, int position) {
-        WeatherOne w= (WeatherOne) list.get(position);
-        holder.dia.setText(w.getDia());
-        holder.fecha.setText(w.getFecha());
-        holder.hora.setText(w.getHora());
-        holder.gradosMin.setText(w.getGradosMin());
-        holder.gradosMax.setText(w.getGradosMax());
-        holder.gradosTemp.setText(w.getGradosTemp());
-        holder.descrip.setText(w.getDescripcion());
+
+        holder.dia.setText( String.valueOf(root.list.get(position).dt_txt));
+        holder.fecha.setText(String.valueOf(root.list.get(position).dt));
+        holder.hora.setText(String.valueOf(root.list.get(position).weather.get(position).main));
+        holder.gradosMin.setText(String.valueOf(root.list.get(position).main.temp_min));
+        holder.gradosMax.setText(String.valueOf(root.list.get(position).main.temp_max));
+        holder.gradosTemp.setText(String.valueOf(root.list.get(position).main.temp));
+        holder.descrip.setText(String.valueOf(root.list.get(position).weather.get(position).description));
 
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return root.list.size();
     }
 
     public void setOnClickListener(View.OnClickListener onClickListener) {
