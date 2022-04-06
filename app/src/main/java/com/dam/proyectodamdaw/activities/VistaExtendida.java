@@ -13,6 +13,8 @@ public class VistaExtendida extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.extended_view);
+        List list = (List) getIntent().getExtras().getSerializable("root");
+        int posi = getIntent().getExtras().getInt("posicion");
 
         ImageView imageView = findViewById(R.id.imageExt);
         TextView hora = findViewById(R.id.horaExt);
@@ -24,13 +26,14 @@ public class VistaExtendida extends AppCompatActivity {
         TextView humedad = findViewById(R.id.numHumedad);
 
 //        imageView.setImageResource(getIntent().getExtras().getString("img"));
-        hora.setText(getIntent().getExtras().getString("hora"));
-        fecha.setText(getIntent().getExtras().getString("fecha"));
-        grados.setText(getIntent().getExtras().getString("grTemp"));
-        grMax.setText(getIntent().getExtras().getString("grMax"));
-        grMin.setText(getIntent().getExtras().getString("grMin"));
-        grSens.setText(getIntent().getExtras().getString("humedad"));
-        humedad.setText(getIntent().getExtras().getString("grSens"));
+
+        fecha.setText(String.valueOf(list.dt));
+        hora.setText(String.valueOf(list.weather.get(posi).main));
+        grMin.setText(String.valueOf(list.main.temp_min));
+        grMax.setText(String.valueOf(list.main.temp_max));
+        grados.setText(String.valueOf(list.main.temp));
+        grSens.setText(String.valueOf(list.main.feels_like));
+        humedad.setText(String.valueOf(list.main.humidity));
 
     }
 }

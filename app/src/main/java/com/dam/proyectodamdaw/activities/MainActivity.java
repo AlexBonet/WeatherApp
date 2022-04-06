@@ -9,8 +9,6 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dam.proyectodamdaw.Recycler.MyRVAdapter;
-import com.dam.proyectodamdaw.Recycler.Root;
 import com.dam.proyectodamdaw.api.Connector;
 import com.dam.proyectodamdaw.base.BaseActivity;
 import com.dam.proyectodamdaw.base.CallInterface;
@@ -29,10 +27,9 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
 
 //        ImageView imageView=findViewById(R.id.ima);
 //        ImageDownloader.DownloadImage(Parameters.URL_icon_pre+"03d"+Parameters.URL_icon_pos,imageView);
-        recyclerView = findViewById(R.id.recycler);
         nomCiudad = findViewById(R.id.nomCiudad);
         nomCiudad.setText(getIntent().getExtras().getString("city"));
-
+        recyclerView = findViewById(R.id.recycler);
     }
 
     @Override
@@ -61,17 +58,11 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(this,"Prevision para el " + "" + " a las " + "w.getHora()",Toast.LENGTH_SHORT).show();
-
+        int posi = recyclerView.getChildAdapterPosition(view);
+//        Toast.makeText(this,"Prevision para el " + "" + " a las " + "w.getHora()",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),VistaExtendida.class);
-//        intent.putExtra("hora",);
-//        intent.putExtra("fecha",w.getFecha());
-//        intent.putExtra("grTemp",w.getGradosTemp());
-//        intent.putExtra("grMax",w.getGradosMax());
-//        intent.putExtra("grMin",w.getGradosMin());
-//        intent.putExtra("humedad",w.getHumedad());
-//        intent.putExtra("grSens",w.getSensacionTermica());
-
+        intent.putExtra("root",root.list.get(posi));
+        intent.putExtra("posicion",posi);
         startActivity(intent);
 
     }

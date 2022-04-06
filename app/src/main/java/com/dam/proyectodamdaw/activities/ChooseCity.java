@@ -6,17 +6,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dam.proyectodamdaw.R;
-import com.dam.proyectodamdaw.Recycler.Ciudad;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class ChooseCity extends AppCompatActivity {
 

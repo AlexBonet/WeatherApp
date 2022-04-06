@@ -1,4 +1,4 @@
-package com.dam.proyectodamdaw.Recycler;
+package com.dam.proyectodamdaw.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,13 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dam.proyectodamdaw.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MyRVAdapter<T> extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>{
     private Root root;
     private LayoutInflater inflater;
     private View.OnClickListener onClickListener;
 
-    public MyRVAdapter(Context context, Root list){
-        this.root = list;
+    public MyRVAdapter(Context context, Root root){
+        this.root = root;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -34,10 +37,14 @@ public class MyRVAdapter<T> extends RecyclerView.Adapter<MyRVAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull MyRVAdapter.ViewHolder holder, int position) {
+        Date date = new Date((long)root.list.get(position).dt*1000);
 
-        holder.dia.setText( String.valueOf(root.list.get(position).dt_txt));
-        holder.fecha.setText(String.valueOf(root.list.get(position).dt));
-        holder.hora.setText(String.valueOf(root.list.get(position).weather.get(position).main));
+        holder.dia.setText(new SimpleDateFormat("EEEE").format(date));
+        holder.hora.setText(new SimpleDateFormat("HH:mm").format(date));
+        holder.fecha.setText(new SimpleDateFormat("dd/MM/YYYY").format(date));
+//        holder.dia.setText( String.valueOf(root.list.get(position).dt_txt));
+//        holder.fecha.setText(String.valueOf(root.list.get(position).dt));
+//        holder.hora.setText(String.valueOf(root.list.get(position).weather.get(position).main));
         holder.gradosMin.setText(String.valueOf(root.list.get(position).main.temp_min));
         holder.gradosMax.setText(String.valueOf(root.list.get(position).main.temp_max));
         holder.gradosTemp.setText(String.valueOf(root.list.get(position).main.temp));

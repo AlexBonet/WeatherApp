@@ -1,4 +1,4 @@
-package com.dam.proyectodamdaw.Recycler;
+package com.dam.proyectodamdaw.activities;
 
 import android.widget.ImageView;
 

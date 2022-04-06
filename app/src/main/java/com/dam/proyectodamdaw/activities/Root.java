@@ -1,4 +1,4 @@
-package com.dam.proyectodamdaw.Recycler;
+package com.dam.proyectodamdaw.activities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
