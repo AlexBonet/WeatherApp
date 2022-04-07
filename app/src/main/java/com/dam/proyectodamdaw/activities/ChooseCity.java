@@ -13,11 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dam.proyectodamdaw.R;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class ChooseCity extends AppCompatActivity {
 
     private Spinner spinner;
     private Button buttonIr;
     private ImageView imageView;
+    private LinkedList<Ciudad> cityList=new LinkedList<>();
+    private Ciudad ciudad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,22 +33,19 @@ public class ChooseCity extends AppCompatActivity {
         buttonIr=findViewById(R.id.ir);
         imageView=findViewById(R.id.fotodisplay);
 
-        Ciudad[] ciudades= {
+        cityList.add(new Ciudad("Lliria", "39.6217623","-0.5955436",R.mipmap.lliria1));
+        cityList.add(new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1));
+        cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));
 
-                new Ciudad("Lliria", "39.6217623","-0.5955436",R.mipmap.lliria1),
-                new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1),
-                new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1)
-        };
-
-
-        ArrayAdapter<Ciudad> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,ciudades);
+        ArrayAdapter<Ciudad> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                imageView.setImageResource(ciudades[i].getImage());
+                ciudad  = cityList.get(i);
+                imageView.setImageResource(ciudad.getImage());
             }
 
             @Override
@@ -56,10 +58,10 @@ public class ChooseCity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                String nom = spinner.getSelectedItem().toString();
-                intent.putExtra("city", nom);
-//                intent.putExtra("lat", ciudades[i].getLat());
-//                intent.putExtra("lon", ciudades[i].getLon());
+                intent.putExtra("city", ciudad);
+                intent.putExtra("nom", ciudad.getNom());
+                intent.putExtra("lat", ciudad.getLat());
+                intent.putExtra("lon", ciudad.getLon());
                 startActivity(intent);
             }
         });

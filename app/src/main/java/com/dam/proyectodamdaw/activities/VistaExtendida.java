@@ -22,26 +22,32 @@ public class VistaExtendida extends AppCompatActivity {
 
 
         ImageView imageView = findViewById(R.id.imageExt);
-        TextView hora = findViewById(R.id.horaExt);
-        TextView fecha = findViewById(R.id.fechaExt);
+//        TextView hora = findViewById(R.id.horaExt);
+//        TextView fecha = findViewById(R.id.fechaExt);
         TextView grados = findViewById(R.id.gradosExt);
         TextView grMax = findViewById(R.id.grMaxExt);
         TextView grMin = findViewById(R.id.grMinExt);
         TextView grSens = findViewById(R.id.grSensacionExt);
         TextView humedad = findViewById(R.id.numHumedad);
+        TextView viento = findViewById(R.id.numViento);
+//        TextView lluvia = findViewById(R.id.numLluvia);
+        TextView descripcion = findViewById(R.id.dt_txt);
 
         String codImagen = list.weather.get(0).icon;
         ImageDownloader.DownloadImage(Parameters.URL_icon_pre + codImagen + Parameters.URL_icon_pos, imageView);
 
-
-        Date date = new Date((long)list.dt*1000);
-        hora.setText(new SimpleDateFormat("HH:mm").format(date));
-        fecha.setText(new SimpleDateFormat("dd/MM/YYYY").format(date));
+//        Date date = new Date((long)list.dt*1000);
+//        hora.setText(new SimpleDateFormat("HH:mm").format(date));
+//        fecha.setText(new SimpleDateFormat("dd/MM/YYYY").format(date));
         grMin.setText(String.valueOf(list.main.temp_min));
         grMax.setText(String.valueOf(list.main.temp_max));
         grados.setText(String.valueOf(list.main.temp));
         grSens.setText(String.valueOf(list.main.feels_like));
         humedad.setText(String.valueOf(list.main.humidity));
+        viento.setText(String.valueOf(list.wind.speed));
+//        lluvia.setText(String.valueOf(list.rain._3h));
+        descripcion.setText(list.dt_txt);
+
 
     }
 }

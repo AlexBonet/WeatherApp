@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dam.proyectodamdaw.Parameters;
 import com.dam.proyectodamdaw.api.Connector;
 import com.dam.proyectodamdaw.base.BaseActivity;
 import com.dam.proyectodamdaw.base.CallInterface;
@@ -16,7 +17,11 @@ import com.dam.proyectodamdaw.R;
 
 public class MainActivity extends BaseActivity implements CallInterface, View.OnClickListener {
     Root root;
-    String url = "forecast?lang=es&units=metric&lat=39.6217623&lon=-0.5955436&appid=610ef1ab429f1c7c4bb6021fdfa5b2c0";
+//    String url = "forecast?lang=es&units=metric&lat=39.6217623&lon=-0.5955436&appid=610ef1ab429f1c7c4bb6021fdfa5b2c0";
+    Ciudad ciudad;
+    String lat;
+    String lon;
+    String url;
     private RecyclerView recyclerView;
     private TextView nomCiudad;
 
@@ -27,8 +32,12 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
 
 
         nomCiudad = findViewById(R.id.nomCiudad);
-        nomCiudad.setText(getIntent().getExtras().getString("city"));
+        nomCiudad.setText(getIntent().getExtras().getString("nom"));
         recyclerView = findViewById(R.id.recycler);
+        ciudad = (Ciudad) getIntent().getExtras().getSerializable("city");
+        lat = ciudad.getLat();
+        lon = ciudad.getLon();
+        url = "forecast?lang=es&units=metric&lat=" + lat + "&lon=" + lon + Parameters.URL_post_lon;
     }
 
     @Override

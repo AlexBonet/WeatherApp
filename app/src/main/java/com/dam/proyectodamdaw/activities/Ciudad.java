@@ -2,7 +2,9 @@ package com.dam.proyectodamdaw.activities;
 
 import android.widget.ImageView;
 
-public class Ciudad {
+import java.io.Serializable;
+
+public class Ciudad implements Serializable {
     private String nom;
     private String lat;
     private String lon;

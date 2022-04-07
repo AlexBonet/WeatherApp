@@ -22,7 +22,7 @@
         </activity>
 
         <activity android:name=".activities.VistaExtendida"
-            android:label="VistaExtendida"
+            android:label="Detalles"
             android:theme="@style/Theme.ProyectoDamDaw">
         </activity>
 
