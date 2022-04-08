@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dam.proyectodamdaw">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -8,9 +9,13 @@
         android:icon="@drawable/solluvia_background"
         android:label="EL TIEMPO :)"
         android:roundIcon="@drawable/solluvia_background"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ProyectoDamDaw">
+        android:theme="@style/Theme.ProyectoDamDaw"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activities.AddCity"
+            android:exported="false"
+            android:label=""/>
         <activity
             android:name=".activities.ChooseCity"
             android:exported="true">
@@ -20,19 +25,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activities.VistaExtendida"
+        <activity
+            android:name=".activities.VistaExtendida"
             android:label="Detalles"
-            android:theme="@style/Theme.ProyectoDamDaw">
-        </activity>
-
+            android:theme="@style/Theme.ProyectoDamDaw"></activity>
         <activity
             android:name=".activities.MainActivity"
-            android:label="EL TIEMPO EN:"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true"
+            android:label="EL TIEMPO EN:"></activity>
     </application>
 
 </manifest>

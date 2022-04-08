@@ -20,6 +20,7 @@ public class ChooseCity extends AppCompatActivity {
 
     private Spinner spinner;
     private Button buttonIr;
+    private Button buttonMas;
     private ImageView imageView;
     private LinkedList<Ciudad> cityList=new LinkedList<>();
     private Ciudad ciudad;
@@ -31,6 +32,8 @@ public class ChooseCity extends AppCompatActivity {
 
         spinner=findViewById(R.id.spinner);
         buttonIr=findViewById(R.id.ir);
+        buttonMas = findViewById(R.id.añadir);
+
         imageView=findViewById(R.id.fotodisplay);
 
         cityList.add(new Ciudad("Lliria", "39.6217623","-0.5955436",R.mipmap.lliria1));
@@ -62,6 +65,15 @@ public class ChooseCity extends AppCompatActivity {
                 intent.putExtra("nom", ciudad.getNom());
                 intent.putExtra("lat", ciudad.getLat());
                 intent.putExtra("lon", ciudad.getLon());
+                startActivity(intent);
+            }
+        });
+
+        buttonMas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),AddCity.class);
+
                 startActivity(intent);
             }
         });
