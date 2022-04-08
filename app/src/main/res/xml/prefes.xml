@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Basic Setting">
+        <ListPreference
+            android:defaultValue="standard"
+            android:entries="@array/unidades_entries"
+            android:entryValues="@array/unidades_values"
+            android:key="unidades"
+            android:summary="Unidad seleccionada:"
+            android:title="Unidades" />
+
+        <androidx.preference.ListPreference
+            android:dialogTitle="Tema"
+            android:entries="@array/settings_theme_entries"
+            android:entryValues="@array/settings_theme_values"
+            android:key="theme_key"
+            android:title="Tema"
+            android:summary="Tema seleccionado: "/>
+        <androidx.preference.ListPreference
+            android:dialogTitle="Idioma"
+            android:entries="@array/settings_theme_values"
+            android:entryValues="@array/settings_theme_values"
+            android:key="idioma_key"
+            android:title="Idioma"
+            android:summary="Lenguaje seleccionado: "/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

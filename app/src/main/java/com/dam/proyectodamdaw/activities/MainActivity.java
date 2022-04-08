@@ -2,10 +2,13 @@ package com.dam.proyectodamdaw.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -71,5 +74,24 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
         intent.putExtra("root",root.list.get(posi));
         startActivity(intent);
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case (R.id.configuracion):
+                Intent intentPreferenciasActivity = new Intent(this, PreferenciasActivity.class);
+                startActivity(intentPreferenciasActivity);
+                return true;
+            case (R.id.exit):
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
