@@ -26,6 +26,7 @@ public class ChooseCity extends AppCompatActivity {
     private Button buttonMas;
     private ImageView imageView;
     private LinkedList<Ciudad> cityList=new LinkedList<>();
+    private LinkedList<Ciudad> alterCityList=new LinkedList<>();
     private Ciudad ciudad;
 
     @Override
@@ -43,7 +44,13 @@ public class ChooseCity extends AppCompatActivity {
         cityList.add(new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1));
         cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));
 
-        ArrayAdapter<Ciudad> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
+        ArrayAdapter<Ciudad> adapter;
+        if (getIntent().getExtras().get("newList") == null){
+            alterCityList = (LinkedList<Ciudad>) getIntent().getExtras().get("newList");
+            adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
+        }else {
+            adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,alterCityList);
+        }
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
 
@@ -76,10 +83,15 @@ public class ChooseCity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),AddCity.class);
-
+                intent.putExtra("lista",cityList);
                 startActivity(intent);
             }
         });
+    }
+
+    public void addCity(){
+        Ciudad c  = (Ciudad) getIntent().getExtras().get("newCity");
+        cityList.add(c);
     }
 
     @Override
@@ -88,11 +100,12 @@ public class ChooseCity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //TODO PETA
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case (R.id.configuracion):
-                Intent intentPreferenciasActivity = new Intent(this, PreferenciasActivity.class);
+            case (R.id.confi):
+                Intent intentPreferenciasActivity = new Intent(getApplicationContext(), PreferenciasActivity.class);
                 startActivity(intentPreferenciasActivity);
                 return true;
             case (R.id.exit):

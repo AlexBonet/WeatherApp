@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case (R.id.configuracion):
+            case (R.id.confi):
                 Intent intentPreferenciasActivity = new Intent(this, PreferenciasActivity.class);
                 startActivity(intentPreferenciasActivity);
                 return true;
