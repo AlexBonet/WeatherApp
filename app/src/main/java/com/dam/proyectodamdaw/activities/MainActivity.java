@@ -33,14 +33,13 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
         super.onCreate(savedInstanceState);
         setLayout(R.layout.activity_main);
 
-
         nomCiudad = findViewById(R.id.nomCiudad);
         nomCiudad.setText(getIntent().getExtras().getString("nom"));
         recyclerView = findViewById(R.id.recycler);
         ciudad = (Ciudad) getIntent().getExtras().getSerializable("city");
         lat = ciudad.getLat();
         lon = ciudad.getLon();
-        url = "forecast?lang=es&units=metric&lat=" + lat + "&lon=" + lon + Parameters.URL_post_lon;
+        url = "forecast?lang=" + "es" + "&units=" + "metric" + "&lat=" + lat + "&lon=" + lon + Parameters.URL_post_lon;
     }
 
     @Override
@@ -94,4 +93,20 @@ public class MainActivity extends BaseActivity implements CallInterface, View.On
                 return super.onOptionsItemSelected(item);
         }
     }
+
+// onSaveInstanceState +  onRestoreInstanceState
+
+
+//    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putSerializable("rootE",root);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//
+//        recyclerView.setAdapter((RecyclerView.Adapter) savedInstanceState.get("rootE"));
+//    }
 }

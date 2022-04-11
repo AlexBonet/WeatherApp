@@ -19,8 +19,8 @@
             android:summary="Tema seleccionado: "/>
         <androidx.preference.ListPreference
             android:dialogTitle="Idioma"
-            android:entries="@array/settings_theme_values"
-            android:entryValues="@array/settings_theme_values"
+            android:entries="@array/idiomas_entries"
+            android:entryValues="@array/idiomas_values"
             android:key="idioma_key"
             android:title="Idioma"
             android:summary="Lenguaje seleccionado: "/>

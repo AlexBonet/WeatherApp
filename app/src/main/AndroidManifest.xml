@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dam.proyectodamdaw">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> <!-- Siempre, localiazcion más o menos buena  -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/> <!-- Solo cuando necesitamos una ubicaicon precisa   -->
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application

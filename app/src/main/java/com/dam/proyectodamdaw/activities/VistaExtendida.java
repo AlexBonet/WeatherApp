@@ -18,6 +18,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class VistaExtendida extends AppCompatActivity {
+
+    private ImageView imageView;
+    private TextView grados, grMax, grMin, grSens, humedad,viento, descripcion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +29,14 @@ public class VistaExtendida extends AppCompatActivity {
         List list = (List) getIntent().getExtras().getSerializable("root");
 
 
-        ImageView imageView = findViewById(R.id.imageExt);
-        TextView grados = findViewById(R.id.gradosExt);
-        TextView grMax = findViewById(R.id.grMaxExt);
-        TextView grMin = findViewById(R.id.grMinExt);
-        TextView grSens = findViewById(R.id.grSensacionExt);
-        TextView humedad = findViewById(R.id.numHumedad);
-        TextView viento = findViewById(R.id.numViento);
-        TextView descripcion = findViewById(R.id.dt_txt);
+        imageView = findViewById(R.id.imageExt);
+         grados = findViewById(R.id.gradosExt);
+         grMax = findViewById(R.id.grMaxExt);
+         grMin = findViewById(R.id.grMinExt);
+         grSens = findViewById(R.id.grSensacionExt);
+         humedad = findViewById(R.id.numHumedad);
+         viento = findViewById(R.id.numViento);
+         descripcion = findViewById(R.id.dt_txt);
 
         String codImagen = list.weather.get(0).icon;
         ImageDownloader.DownloadImage(Parameters.URL_icon_pre + codImagen + Parameters.URL_icon_pos, imageView);
@@ -65,5 +69,33 @@ public class VistaExtendida extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("image",imageView.getImageAlpha());
+        outState.putString("grados",grados.getText().toString());
+        outState.putString("grMax",grMax.getText().toString());
+        outState.putString("grMin",grMin.getText().toString());
+        outState.putString("grSens",grSens.getText().toString());
+        outState.putString("humedad",humedad.getText().toString());
+        outState.putString("viento",viento.getText().toString());
+        outState.putString("descripcion",descripcion.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        imageView.setImageResource(R.drawable.ic_round_cloud_off_24);
+        grados.setText(savedInstanceState.getString("grados",""));
+        grMax.setText(savedInstanceState.getString("grMax",""));
+        grMin.setText(savedInstanceState.getString("grMin",""));
+        grSens.setText(savedInstanceState.getString("grSens",""));
+        humedad.setText(savedInstanceState.getString("humedad",""));
+        viento.setText(savedInstanceState.getString("viento",""));
+        descripcion.setText(savedInstanceState.getString("descripcion","informacion no recivida"));
     }
 }

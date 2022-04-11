@@ -1,6 +1,10 @@
 package com.dam.proyectodamdaw.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +24,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 //TODO cambiar el link de postman
 
-//TODO hacer landscape
+//TODO hacer landscape, vistas y que se guarde al girar
 public class ChooseCity extends AppCompatActivity {
 
     private Spinner spinner;
@@ -31,10 +35,25 @@ public class ChooseCity extends AppCompatActivity {
     private LinkedList<Ciudad> alterCityList=new LinkedList<>();
     private Ciudad ciudad;
 
+    //Parte de la posicion actual
+    private LocationManager managerloc;
+    private String proo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.city_view);
+
+        //Parte de la posicion actual
+        managerloc = (LocationManager) getSystemService(LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setCostAllowed(false);
+        criteria.setAltitudeRequired(true);
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+
+        proo = managerloc.getBestProvider(criteria,true);
+        @SuppressLint("MissingPermission")
+        Location location = managerloc.getLastKnownLocation(proo);
 
         spinner=findViewById(R.id.spinner);
         buttonIr=findViewById(R.id.ir);
@@ -42,9 +61,11 @@ public class ChooseCity extends AppCompatActivity {
 
         imageView=findViewById(R.id.fotodisplay);
 
+        cityList.add(new Ciudad("Posicion alctual", location.getAltitude(),location.getLongitude(),R.mipmap.ciudad1));
         cityList.add(new Ciudad("Lliria", "39.6217623","-0.5955436",R.mipmap.lliria1));
         cityList.add(new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1));
         cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));
+
 
         ArrayAdapter<Ciudad> adapter;
         adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
@@ -97,6 +118,9 @@ public class ChooseCity extends AppCompatActivity {
         });
     }
 
+    /**
+     * de momento no lo utilizamos
+     */
     public void addCity(){
         Ciudad c  = (Ciudad) getIntent().getExtras().get("newCity");
         cityList.add(c);
@@ -120,4 +144,6 @@ public class ChooseCity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

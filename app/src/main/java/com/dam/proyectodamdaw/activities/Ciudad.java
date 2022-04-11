@@ -8,6 +8,8 @@ public class Ciudad implements Serializable {
     private String nom;
     private String lat;
     private String lon;
+    private double dlat;
+    private double dlon;
     private int imageView;
     private String url;
 
@@ -15,6 +17,13 @@ public class Ciudad implements Serializable {
         this.nom = nom;
         this.lat = lat;
         this.lon = lon;
+        this.imageView = imageView;
+    }
+
+    public Ciudad(String nom, double lat, double lon, int imageView) {
+        this.nom = nom;
+        this.dlat = lat;
+        this.dlon = lon;
         this.imageView = imageView;
     }
 
@@ -37,6 +46,19 @@ public class Ciudad implements Serializable {
     public String getUrl() {
         return url;
     }
+
+    public double getDlat() {
+        return dlat;
+    }
+
+    public double getDlon() {
+        return dlon;
+    }
+
+    public int getImageView() {
+        return imageView;
+    }
+
     @Override
     public String toString() {
         return  nom ;
