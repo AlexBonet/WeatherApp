@@ -2,45 +2,23 @@ package com.dam.proyectodamdaw.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import com.dam.proyectodamdaw.R;
 
 public class GestionPreferencias {
-    private SharedPreferences pref;
-    private static GestionPreferencias gestionPreferencias;
+    private static SharedPreferences preferences;
 
-    private GestionPreferencias(){
+    private GestionPreferencias(){}
 
-    }
-
-    public static GestionPreferencias getInstance(){
-        if(gestionPreferencias==null)
-            gestionPreferencias = new GestionPreferencias();
-        return gestionPreferencias;
-    }
-
-    private void inicializa(Context context) {
-        if (pref == null)
-            pref = PreferenceManager.getDefaultSharedPreferences(context);
-    }
-
-    public String getUnidades(Context context){
+    public static String getUnidad(Context context){
         inicializa(context);
-        return pref.getString("unidades","standard");
+        return preferences.getString("unidades","standard");
     }
 
-    public String getEditTextPreference(Context context){
-        inicializa(context);
-        return pref.getString("editTextPreferenceKey","389");
+    private static void inicializa(Context context) {
+        if (preferences == null)
+            preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
-
-    public boolean getCheckBoxPreference(Context context){
-        inicializa(context);
-        return pref.getBoolean("checkBoxPreferenceKey",false);
-    }
-//    public String getTheme(Context context){
-//        inicializa(context);
-//        return pref.getString(context.getString(R.string.settings_theme_key),ThemeSetup.Mode.DEFAULT.name());
-//    }
 }

@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/solluvia_background"
+        android:icon="@drawable/ic_baseline_cloud_circle_24"
         android:label="EL TIEMPO :)"
-        android:roundIcon="@drawable/solluvia_background"
+        android:roundIcon="@drawable/ic_baseline_cloud_circle_24"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoDamDaw"
         android:usesCleartextTraffic="true">
@@ -16,6 +16,9 @@
             android:name=".activities.AddCity"
             android:exported="false"
             android:label=""/>
+        <activity
+            android:name=".activities.PreferenciasActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.ChooseCity"
             android:exported="true">

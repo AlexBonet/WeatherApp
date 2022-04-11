@@ -18,7 +18,9 @@ import com.dam.proyectodamdaw.R;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+//TODO cambiar el link de postman
 
+//TODO hacer landscape
 public class ChooseCity extends AppCompatActivity {
 
     private Spinner spinner;
@@ -45,14 +47,20 @@ public class ChooseCity extends AppCompatActivity {
         cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));
 
         ArrayAdapter<Ciudad> adapter;
-        if (getIntent().getExtras().get("newList") == null){
-            alterCityList = (LinkedList<Ciudad>) getIntent().getExtras().get("newList");
-            adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
-        }else {
-            adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,alterCityList);
-        }
+        adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
+
+        //TODO añadir ciudad
+
+//        if (getIntent().getExtras().get("newList") != cityList){
+//            alterCityList = (LinkedList<Ciudad>) getIntent().getExtras().get("newList");
+//            adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
+//        }else {
+//            adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,alterCityList);
+//        }
+//        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+//        spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -99,8 +107,6 @@ public class ChooseCity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
-
-    //TODO PETA
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

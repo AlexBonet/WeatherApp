@@ -2,8 +2,10 @@ package com.dam.proyectodamdaw.activities;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.dam.proyectodamdaw.R;
@@ -17,19 +19,23 @@ public class PreferenciasFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.prefes,rootKey);
 
-        final ListPreference unidades = findPreference("unidades");
-        final java.util.List<String> unidades_entries = Arrays.asList(getResources().getStringArray(R.array.unidades_entries));
-        final List<String> unidades_values = Arrays.asList(getResources().getStringArray(R.array.unidades_values));
+        ListPreference listPreference = findPreference("unidades");
 
-        int pos  = unidades_values.indexOf(GestionPreferencias.getInstance().getUnidades(getContext()));
+        List<String> entries = Arrays.asList(getResources().getStringArray(R.array.unidades_entries));
+        List<String> values = Arrays.asList(getResources().getStringArray(R.array.unidades_values));
 
-        unidades.setSummary("Unidades en " + unidades_entries.get(pos));
-        unidades.setOnPreferenceChangeListener((preference, newValue) -> {
+        String val = entries.get(values.indexOf(GestionPreferencias.getUnidad(getContext())));
 
-            int pos1 = unidades_values.indexOf(newValue);
-            unidades.setSummary("Unidades en " + unidades_entries.get(pos1));
+        listPreference.setSummary("Seleccionado: " + val);
 
-            return true;
+        listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                String val = entries.get(values.indexOf(newValue));
+                listPreference.setSummary("Seleccionado: " + val);
+                return true;
+            }
         });
+
     }
 }
