@@ -51,9 +51,9 @@ public class ChooseCity extends AppCompatActivity {
         criteria.setAltitudeRequired(true);
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
-        proo = managerloc.getBestProvider(criteria,true);
-        @SuppressLint("MissingPermission")
-        Location location = managerloc.getLastKnownLocation(proo);
+//        proo = managerloc.getBestProvider(criteria,true);
+//        @SuppressLint("MissingPermission")
+//        Location location = managerloc.getLastKnownLocation(proo);
 
         spinner=findViewById(R.id.spinner);
         buttonIr=findViewById(R.id.ir);
@@ -61,7 +61,7 @@ public class ChooseCity extends AppCompatActivity {
 
         imageView=findViewById(R.id.fotodisplay);
 
-        cityList.add(new Ciudad("Posicion alctual", location.getAltitude(),location.getLongitude(),R.mipmap.ciudad1));
+//        cityList.add(new Ciudad("Posicion alctual", location.getAltitude(),location.getLongitude(),R.mipmap.ciudad1));
         cityList.add(new Ciudad("Lliria", "39.6217623","-0.5955436",R.mipmap.lliria1));
         cityList.add(new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1));
         cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dia2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="DIADIADIADIA"
+        android:textColor="@color/titulo"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/image2"
+        app:layout_constraintTop_toTopOf="@+id/image2" />
+
+    <TextView
+        android:id="@+id/descripcion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="DESCRIPCION"
+        android:textColor="@color/titulo"
+        app:layout_constraintBottom_toBottomOf="@+id/image2"
+        app:layout_constraintStart_toEndOf="@+id/image2" />
+
+    <TextView
+        android:id="@+id/temp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Temp"
+        android:textColor="@color/titulo"
+        app:layout_constraintBottom_toBottomOf="@+id/descripcion2"
+        app:layout_constraintStart_toEndOf="@+id/descripcion2"
+        app:layout_constraintTop_toTopOf="@+id/descripcion2" />
+
+    <TextView
+        android:id="@+id/gradosTemp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="grados"
+        app:layout_constraintBottom_toBottomOf="@+id/temp2"
+        app:layout_constraintStart_toEndOf="@+id/temp2"
+        app:layout_constraintTop_toTopOf="@+id/temp2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/max2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Max."
+        android:textColor="@color/titulo"
+        app:layout_constraintBottom_toBottomOf="@+id/gradosTemp2"
+        app:layout_constraintStart_toEndOf="@+id/gradosTemp2"
+        app:layout_constraintTop_toTopOf="@+id/gradosTemp2" />
+
+    <TextView
+        android:id="@+id/gradosMax2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="gMAX"
+        android:textColor="#F44336"
+        app:layout_constraintBottom_toBottomOf="@+id/max2"
+        app:layout_constraintStart_toEndOf="@+id/max2"
+        app:layout_constraintTop_toTopOf="@+id/max2" />
+
+    <TextView
+        android:id="@+id/min2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Min."
+        android:textColor="@color/titulo"
+        app:layout_constraintBottom_toBottomOf="@+id/gradosMax2"
+        app:layout_constraintStart_toEndOf="@+id/gradosMax2"
+        app:layout_constraintTop_toTopOf="@+id/gradosMax2" />
+
+    <TextView
+        android:id="@+id/gradosMin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="gMIn"
+        android:textColor="#00BCD4"
+        app:layout_constraintBottom_toBottomOf="@+id/min2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/min2"
+        app:layout_constraintTop_toTopOf="@+id/min2" />
+
+    <TextView
+        android:id="@+id/fecha2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="dd/mm/yyyy"
+        android:textColor="@color/titulo"
+        app:layout_constraintBottom_toBottomOf="@+id/dia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dia2" />
+
+    <TextView
+        android:id="@+id/hora2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hh:mm"
+        android:textColor="@color/titulo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/dia2"
+        app:layout_constraintEnd_toStartOf="@+id/fecha2"
+        app:layout_constraintStart_toEndOf="@+id/dia2"
+        app:layout_constraintTop_toTopOf="@+id/dia2" />
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="96dp"
+        android:layout_height="91dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/solluvia" />
+</androidx.constraintlayout.widget.ConstraintLayout>
