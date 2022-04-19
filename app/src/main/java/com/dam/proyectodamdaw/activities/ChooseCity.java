@@ -14,8 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dam.proyectodamdaw.R;
@@ -26,11 +28,12 @@ import java.util.LinkedList;
 
 //TODO hacer landscape, vistas y que se guarde al girar
 public class ChooseCity extends AppCompatActivity {
-
+    private final int ACT_CIUDAD = 1234;
     private Spinner spinner;
     private Button buttonIr;
     private Button buttonMas;
     private ImageView imageView;
+    private ArrayAdapter<Ciudad> adapter;
     private LinkedList<Ciudad> cityList=new LinkedList<>();
     private LinkedList<Ciudad> alterCityList=new LinkedList<>();
     private Ciudad ciudad;
@@ -58,21 +61,17 @@ public class ChooseCity extends AppCompatActivity {
         spinner=findViewById(R.id.spinner);
         buttonIr=findViewById(R.id.ir);
         buttonMas = findViewById(R.id.añadir);
-
         imageView=findViewById(R.id.fotodisplay);
 
-//        cityList.add(new Ciudad("Posicion alctual", location.getAltitude(),location.getLongitude(),R.mipmap.ciudad1));
         cityList.add(new Ciudad("Lliria", "39.6217623","-0.5955436",R.mipmap.lliria1));
         cityList.add(new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1));
         cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));
 
-
-        ArrayAdapter<Ciudad> adapter;
         adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
 
-        //TODO añadir ciudad
+        //TODO poner la posicion actual
 
 //        if (getIntent().getExtras().get("newList") != cityList){
 //            alterCityList = (LinkedList<Ciudad>) getIntent().getExtras().get("newList");
@@ -96,6 +95,7 @@ public class ChooseCity extends AppCompatActivity {
             }
         });
 
+        //Va al recycler
         buttonIr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,12 +108,12 @@ public class ChooseCity extends AppCompatActivity {
             }
         });
 
+        //Va a añadir ciudad
         buttonMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),AddCity.class);
-                intent.putExtra("lista",cityList);
-                startActivity(intent);
+                startActivityForResult(intent,ACT_CIUDAD);
             }
         });
     }
@@ -145,5 +145,20 @@ public class ChooseCity extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACT_CIUDAD){
+            if (resultCode == RESULT_CANCELED){
+                Toast.makeText(this, "CANCELADO", Toast.LENGTH_SHORT).show();
+            }else if (resultCode == RESULT_OK){
+                String cNom = data.getExtras().getString("cNom");
+                String cLat = data.getExtras().getString("cLat");
+                String cLon = data.getExtras().getString("cLon");
+                Ciudad c = new Ciudad(cNom,cLat,cLon,R.mipmap.ciudad1);
+                cityList.add(c);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    }
 }

@@ -22,9 +22,6 @@ public class AddCity extends AppCompatActivity {
     private EditText nom;
     private EditText lat;
     private EditText lon;
-    private Ciudad c;
-    private LinkedList<Ciudad> newCityList=new LinkedList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,28 +34,33 @@ public class AddCity extends AppCompatActivity {
         lat = findViewById(R.id.latEditTxt);
         lon = findViewById(R.id.lonEditTxt);
 
-        c = new Ciudad(nom.getText().toString(),lat.getText().toString(),
-                lon.getText().toString(), R.mipmap.ciudad1);
+        //c = new Ciudad(nom.getText().toString(),lat.getText().toString(),
+                //lon.getText().toString(), R.mipmap.ciudad1);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ChooseCity.class);
-//                intent.putExtra("newCity",c);
-                newCityList = (LinkedList<Ciudad>) getIntent().getExtras().get("lista");
-                newCityList.add(c);
-                intent.putExtra("newList",newCityList);
-                startActivity(intent);
+                Intent intent = new Intent();
+
+                intent.putExtra("cNom",nom.getText().toString());
+                intent.putExtra("cLon",lon.getText().toString());
+                intent.putExtra("cLat",lat.getText().toString());
+
+                setResult(RESULT_OK,intent);
+                finish();
             }
         });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ChooseCity.class);
-                startActivity(intent);
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED,intent);
+                finish();
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
