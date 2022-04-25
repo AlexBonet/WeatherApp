@@ -161,4 +161,18 @@ public class ChooseCity extends AppCompatActivity {
             }
         }
     }
+    
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+//        outState.putSerializable("adaptador", (Serializable) adapter);
+        outState.putSerializable("lista",cityList);
+    }
+
+    @Override
+    public void onRestoreInstanceState(@Nullable Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+//        adapter = (ArrayAdapter<Ciudad>) savedInstanceState.getSerializable("adaptador");
+        cityList= (LinkedList<Ciudad>) savedInstanceState.getSerializable("lista");
+    }
 }

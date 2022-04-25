@@ -10,6 +10,7 @@
         <item>metric</item>
         <item>imperial</item>
     </string-array>
+
     <string-array name="settings_theme_entries">
         <item>@string/default_string</item>
         <item>@string/light</item>
@@ -29,9 +30,9 @@
     </string-array>
     <string-array name="idiomas_values">
         <item>es</item>
-        <item>ing</item>
-        <item>xin</item>
-        <item>fra</item>
+        <item>en</item>
+        <item>zh_cn</item>
+        <item>fr</item>
     </string-array>
 
 

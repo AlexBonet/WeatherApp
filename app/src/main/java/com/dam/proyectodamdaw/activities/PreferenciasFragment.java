@@ -19,23 +19,50 @@ public class PreferenciasFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         setPreferencesFromResource(R.xml.prefes,rootKey);
 
-        ListPreference listPreference = findPreference("unidades");
+        ListPreference listPreferenceVal = findPreference("unidades");
+        ListPreference listPreferenceTem = findPreference("temas");
+        ListPreference listPreferenceIdi = findPreference("idiomas");
 
-        List<String> entries = Arrays.asList(getResources().getStringArray(R.array.unidades_entries));
-        List<String> values = Arrays.asList(getResources().getStringArray(R.array.unidades_values));
+        List<String> entriesVal = Arrays.asList(getResources().getStringArray(R.array.unidades_entries));
+        List<String> entriesTem = Arrays.asList(getResources().getStringArray(R.array.settings_theme_entries));
+        List<String> entriesIdi = Arrays.asList(getResources().getStringArray(R.array.idiomas_entries));
+        List<String> valuesVal = Arrays.asList(getResources().getStringArray(R.array.unidades_values));
+        List<String> valuesTem = Arrays.asList(getResources().getStringArray(R.array.settings_theme_values));
+        List<String> valuesIdi = Arrays.asList(getResources().getStringArray(R.array.idiomas_values));
 
-        String val = entries.get(values.indexOf(GestionPreferencias.getUnidad(getContext())));
+        String val = entriesVal.get(valuesVal.indexOf(GestionPreferencias.getUnidad(getContext())));
+        String tema = entriesTem.get(valuesTem.indexOf(GestionPreferencias.getTema(getContext())));
+        String idioma = entriesIdi.get(valuesIdi.indexOf(GestionPreferencias.getIdioma(getContext())));
 
-        listPreference.setSummary("Seleccionado: " + val);
+        listPreferenceVal.setSummary("Unidad seleccionada: " + val);
+        listPreferenceTem.setSummary("Tema seleccionada: " + tema);
+        listPreferenceIdi.setSummary("Idioma seleccionada: " + idioma);
 
-        listPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+        listPreferenceVal.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
-                String val = entries.get(values.indexOf(newValue));
-                listPreference.setSummary("Seleccionado: " + val);
+                String val = entriesVal.get(valuesVal.indexOf(newValue));
+                listPreferenceVal.setSummary("Unidad seleccionada: " + val);
                 return true;
             }
         });
 
+        listPreferenceTem.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                String tem = entriesTem.get(valuesTem.indexOf(newValue));
+                listPreferenceTem.setSummary("Tema seleccionada: " + tem);
+                return true;
+            }
+        });
+
+        listPreferenceIdi.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
+                String idi = entriesIdi.get(valuesIdi.indexOf(newValue));
+                listPreferenceIdi.setSummary("Idioma seleccionada: " + idi);
+                return true;
+            }
+        });
     }
 }

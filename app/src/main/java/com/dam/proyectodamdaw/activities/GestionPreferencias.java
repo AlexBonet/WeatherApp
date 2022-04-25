@@ -16,6 +16,14 @@ public class GestionPreferencias {
         inicializa(context);
         return preferences.getString("unidades","standard");
     }
+    public static String getTema(Context context){
+        inicializa(context);
+        return preferences.getString("temas","DEFAULT");
+    }
+    public static String getIdioma(Context context){
+        inicializa(context);
+        return preferences.getString("idiomas","ESPAÑOL");
+    }
 
     private static void inicializa(Context context) {
         if (preferences == null)
