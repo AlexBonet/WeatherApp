@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 //TODO cambiar el link de postman
 
-//TODO hacer landscape, vistas y que se guarde al girar
 public class ChooseCity extends AppCompatActivity {
     private final int ACT_CIUDAD = 1234;
     private Spinner spinner;
@@ -54,15 +53,16 @@ public class ChooseCity extends AppCompatActivity {
         criteria.setAltitudeRequired(true);
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
-//        proo = managerloc.getBestProvider(criteria,true);
-//        @SuppressLint("MissingPermission")
-//        Location location = managerloc.getLastKnownLocation(proo);
+        proo = managerloc.getBestProvider(criteria,true);
+        @SuppressLint("MissingPermission")
+        Location location = managerloc.getLastKnownLocation(proo);
 
         spinner=findViewById(R.id.spinner);
         buttonIr=findViewById(R.id.ir);
         buttonMas = findViewById(R.id.añadir);
         imageView=findViewById(R.id.fotodisplay);
 
+//        cityList.add(new Ciudad("Localizacion actual", location.getAltitude(), location.getLongitude(),R.mipmap.ciudad1)); //NO FUNCIONA
         cityList.add(new Ciudad("Lliria", "39.6217623","-0.5955436",R.mipmap.lliria1));
         cityList.add(new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1));
         cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));
@@ -70,17 +70,6 @@ public class ChooseCity extends AppCompatActivity {
         adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
-
-        //TODO poner la posicion actual
-
-//        if (getIntent().getExtras().get("newList") != cityList){
-//            alterCityList = (LinkedList<Ciudad>) getIntent().getExtras().get("newList");
-//            adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
-//        }else {
-//            adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,alterCityList);
-//        }
-//        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-//        spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -116,14 +105,6 @@ public class ChooseCity extends AppCompatActivity {
                 startActivityForResult(intent,ACT_CIUDAD);
             }
         });
-    }
-
-    /**
-     * de momento no lo utilizamos
-     */
-    public void addCity(){
-        Ciudad c  = (Ciudad) getIntent().getExtras().get("newCity");
-        cityList.add(c);
     }
 
     @Override

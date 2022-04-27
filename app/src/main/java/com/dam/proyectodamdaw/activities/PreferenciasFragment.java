@@ -26,17 +26,18 @@ public class PreferenciasFragment extends PreferenceFragmentCompat {
         List<String> entriesVal = Arrays.asList(getResources().getStringArray(R.array.unidades_entries));
         List<String> entriesTem = Arrays.asList(getResources().getStringArray(R.array.settings_theme_entries));
         List<String> entriesIdi = Arrays.asList(getResources().getStringArray(R.array.idiomas_entries));
+
         List<String> valuesVal = Arrays.asList(getResources().getStringArray(R.array.unidades_values));
         List<String> valuesTem = Arrays.asList(getResources().getStringArray(R.array.settings_theme_values));
         List<String> valuesIdi = Arrays.asList(getResources().getStringArray(R.array.idiomas_values));
 
         String val = entriesVal.get(valuesVal.indexOf(GestionPreferencias.getUnidad(getContext())));
         String tema = entriesTem.get(valuesTem.indexOf(GestionPreferencias.getTema(getContext())));
-        String idioma = entriesIdi.get(valuesIdi.indexOf(GestionPreferencias.getIdioma(getContext())));
+//        String idioma = entriesIdi.get(valuesIdi.indexOf(GestionPreferencias.getIdioma(getContext())));//peta
 
         listPreferenceVal.setSummary("Unidad seleccionada: " + val);
         listPreferenceTem.setSummary("Tema seleccionada: " + tema);
-        listPreferenceIdi.setSummary("Idioma seleccionada: " + idioma);
+//        listPreferenceIdi.setSummary("Idioma seleccionada: " + idioma);
 
         listPreferenceVal.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
