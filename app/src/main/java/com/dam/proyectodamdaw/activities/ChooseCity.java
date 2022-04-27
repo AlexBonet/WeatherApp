@@ -24,7 +24,6 @@ import com.dam.proyectodamdaw.R;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-//TODO cambiar el link de postman
 
 public class ChooseCity extends AppCompatActivity {
     private final int ACT_CIUDAD = 1234;
