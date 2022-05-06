@@ -166,7 +166,7 @@ public class ChooseCity extends AppCompatActivity implements CallInterface {
 
     @Override
     public void doInBackground() {
-//        result= Connector.getConector().getAsList(Ciudad.class,"/cities");
+//        result = Connector.getConector().getAsList(Ciudad.class,"/cities");
 //        Toast.makeText(ChooseCity.this, result.toString(), Toast.LENGTH_SHORT).show();
 
     }
