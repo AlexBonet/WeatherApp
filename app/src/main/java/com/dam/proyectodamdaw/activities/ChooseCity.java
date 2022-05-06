@@ -161,7 +161,7 @@ public class ChooseCity extends AppCompatActivity implements CallInterface {
     public void onRestoreInstanceState(@Nullable Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 //        adapter = (ArrayAdapter<Ciudad>) savedInstanceState.getSerializable("adaptador");
-        cityList= (LinkedList<Ciudad>) savedInstanceState.getSerializable("lista");
+        cityList = (LinkedList<Ciudad>) savedInstanceState.getSerializable("lista");
     }
 
     @Override
