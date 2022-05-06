@@ -21,11 +21,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.api.Connector;
+import com.dam.proyectodamdaw.api.Result;
+import com.dam.proyectodamdaw.base.CallInterface;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class ChooseCity extends AppCompatActivity {
+public class ChooseCity extends AppCompatActivity implements CallInterface {
     private final int ACT_CIUDAD = 1234;
     private Spinner spinner;
     private Button buttonIr;
@@ -33,8 +36,9 @@ public class ChooseCity extends AppCompatActivity {
     private ImageView imageView;
     private ArrayAdapter<Ciudad> adapter;
     private LinkedList<Ciudad> cityList=new LinkedList<>();
-    private LinkedList<Ciudad> alterCityList=new LinkedList<>();
     private Ciudad ciudad;
+
+    private Result<Ciudad> result;
 
     //Parte de la posicion actual
     private LocationManager managerloc;
@@ -61,10 +65,14 @@ public class ChooseCity extends AppCompatActivity {
         buttonMas = findViewById(R.id.añadir);
         imageView=findViewById(R.id.fotodisplay);
 
-//        cityList.add(new Ciudad("Localizacion actual", location.getAltitude(), location.getLongitude(),R.mipmap.ciudad1)); //NO FUNCIONA
-        cityList.add(new Ciudad("Lliria", "39.6217623","-0.5955436",R.mipmap.lliria1));
+
+        //TODO quant pasem les ciudades fer un if per a posar les fotos a estes 3
+/*        cityList.add(new Ciudad("Localizacion actual", location.getAltitude(), location.getLongitude(),R.mipmap.ciudad1)); //NO FUNCIONA
+        cityList.add(new Ciudad("Lliria",  "39.6217623","-0.5955436",R.mipmap.lliria1));
         cityList.add(new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1));
         cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));
+*/
+        cityList.addAll(Connector.getConector().getAsList(Ciudad.class,"/cities"));
 
         adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -154,5 +162,21 @@ public class ChooseCity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
 //        adapter = (ArrayAdapter<Ciudad>) savedInstanceState.getSerializable("adaptador");
         cityList= (LinkedList<Ciudad>) savedInstanceState.getSerializable("lista");
+    }
+
+    @Override
+    public void doInBackground() {
+//        result= Connector.getConector().getAsList(Ciudad.class,"/cities");
+//        Toast.makeText(ChooseCity.this, result.toString(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void doInUI() {
+        if (result instanceof Result.Success){
+
+        }else {
+
+        }
     }
 }
