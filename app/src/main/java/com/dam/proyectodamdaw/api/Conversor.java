@@ -39,4 +39,13 @@ public class Conversor {
         return object;
     }
 
+    public <T> Result.Success<T> fromJSonToSuccess(String json, Class<T> myType) {
+        Type dinamicType = TypeToken.getParameterized(Result.Success.class, myType).getType();
+        return gson.fromJson(json, dinamicType);
+    }
+
+    public Result.Error getError(String json) {
+        return gson.fromJson(json, Result.Error.class);
+    }
+
 }

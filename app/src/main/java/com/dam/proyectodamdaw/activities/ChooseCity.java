@@ -21,24 +21,28 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.api.API;
 import com.dam.proyectodamdaw.api.Connector;
 import com.dam.proyectodamdaw.api.Result;
+import com.dam.proyectodamdaw.base.BaseActivity;
 import com.dam.proyectodamdaw.base.CallInterface;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
-public class ChooseCity extends AppCompatActivity implements CallInterface {
+public class ChooseCity extends BaseActivity implements CallInterface {
     private final int ACT_CIUDAD = 1234;
     private Spinner spinner;
-    private Button buttonIr;
-    private Button buttonMas;
+    private Button buttonIr, buttonMas;
     private ImageView imageView;
     private ArrayAdapter<Ciudad> adapter;
-    private LinkedList<Ciudad> cityList=new LinkedList<>();
+    private List<Ciudad> cityList= new LinkedList<>();
     private Ciudad ciudad;
 
-    private Result<Ciudad> result;
+    // Part de acceso a bd
+    private Result result;
 
     //Parte de la posicion actual
     private LocationManager managerloc;
@@ -49,34 +53,14 @@ public class ChooseCity extends AppCompatActivity implements CallInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.city_view);
 
-        //Parte de la posicion actual
-        managerloc = (LocationManager) getSystemService(LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        criteria.setCostAllowed(false);
-        criteria.setAltitudeRequired(true);
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-
-        proo = managerloc.getBestProvider(criteria,true);
-        @SuppressLint("MissingPermission")
-        Location location = managerloc.getLastKnownLocation(proo);
-
         spinner=findViewById(R.id.spinner);
         buttonIr=findViewById(R.id.ir);
         buttonMas = findViewById(R.id.añadir);
         imageView=findViewById(R.id.fotodisplay);
 
+        executeCall(ChooseCity.this);
 
-        //TODO quant pasem les ciudades fer un if per a posar les fotos a estes 3
-/*        cityList.add(new Ciudad("Localizacion actual", location.getAltitude(), location.getLongitude(),R.mipmap.ciudad1)); //NO FUNCIONA
-        cityList.add(new Ciudad("Lliria",  "39.6217623","-0.5955436",R.mipmap.lliria1));
-        cityList.add(new Ciudad("Valencia", "39.586127","-0.539420",R.mipmap.vlc1));
-        cityList.add(new Ciudad("La Pobla", "39.469607","-0.376453",R.mipmap.lapobla1));
-*/
-        cityList.addAll(Connector.getConector().getAsList(Ciudad.class,"/cities"));
-
-        adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(adapter);
+        cityList.add(new Ciudad("Default",  "39.6217623","-0.5955436",R.mipmap.ciudad1));
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -114,12 +98,13 @@ public class ChooseCity extends AppCompatActivity implements CallInterface {
         });
     }
 
-    @Override
+    @Override // Coses de menu
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
-    @Override
+
+    @Override // Coses de preferencias
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case (R.id.confi):
@@ -143,40 +128,37 @@ public class ChooseCity extends AppCompatActivity implements CallInterface {
                 String cNom = data.getExtras().getString("cNom");
                 String cLat = data.getExtras().getString("cLat");
                 String cLon = data.getExtras().getString("cLon");
-                Ciudad c = new Ciudad(cNom,cLat,cLon,R.mipmap.ciudad1);
+                Ciudad c = new Ciudad(cNom,cLat,cLon);
                 cityList.add(c);
                 adapter.notifyDataSetChanged();
             }
         }
     }
     
-    @Override
+    @Override // Guardar estado -> girar pantalla
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 //        outState.putSerializable("adaptador", (Serializable) adapter);
-        outState.putSerializable("lista",cityList);
+        outState.putSerializable("lista", (Serializable) cityList);
     }
 
-    @Override
+    @Override // Restaurar estado -> girar pantalla
     public void onRestoreInstanceState(@Nullable Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 //        adapter = (ArrayAdapter<Ciudad>) savedInstanceState.getSerializable("adaptador");
-        cityList = (LinkedList<Ciudad>) savedInstanceState.getSerializable("lista");
+        cityList = (List<Ciudad>) savedInstanceState.getSerializable("lista");
     }
 
     @Override
     public void doInBackground() {
-//        result = Connector.getConector().getAsList(Ciudad.class,"/cities");
-//        Toast.makeText(ChooseCity.this, result.toString(), Toast.LENGTH_SHORT).show();
+        cityList.addAll(Connector.getConector().getAsListDB(Ciudad.class, API.Routes.GET_ALL));
 
     }
 
     @Override
     public void doInUI() {
-        if (result instanceof Result.Success){
-
-        }else {
-
-        }
+        adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,cityList);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
     }
 }

@@ -10,18 +10,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dam.proyectodamdaw.R;
+import com.dam.proyectodamdaw.api.API;
+import com.dam.proyectodamdaw.api.Connector;
+import com.dam.proyectodamdaw.api.Result;
+import com.dam.proyectodamdaw.base.BaseActivity;
+import com.dam.proyectodamdaw.base.CallInterface;
 
 import java.util.LinkedList;
 
-public class AddCity extends AppCompatActivity {
+public class AddCity extends BaseActivity implements CallInterface {
 
     private Button add;
     private Button cancel;
     private EditText nom;
     private EditText lat;
     private EditText lon;
+
+    private Result result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +42,12 @@ public class AddCity extends AppCompatActivity {
         lat = findViewById(R.id.latEditTxt);
         lon = findViewById(R.id.lonEditTxt);
 
-        //c = new Ciudad(nom.getText().toString(),lat.getText().toString(),
-                //lon.getText().toString(), R.mipmap.ciudad1);
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+
+                executeCall(AddCity.this);
 
                 intent.putExtra("cNom",nom.getText().toString());
                 intent.putExtra("cLon",lon.getText().toString());
@@ -81,5 +88,20 @@ public class AddCity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void doInBackground() {
+        Ciudad aux= new Ciudad(nom.getText().toString(),lon.getText().toString(),lat.getText().toString());
+        result= Connector.getConector().postDB(Ciudad.class,aux, API.Routes.CITY_ADD);
 
+    }
+
+    @Override
+    public void doInUI() {
+        if (result instanceof Result.Success){
+            Toast.makeText(this, "Ciudad añadida", Toast.LENGTH_SHORT).show();
+        }else{
+            Result.Error error =(Result.Error)result;
+            Toast.makeText(this, error.getError(), Toast.LENGTH_SHORT).show();
+        }
+    }
 }
